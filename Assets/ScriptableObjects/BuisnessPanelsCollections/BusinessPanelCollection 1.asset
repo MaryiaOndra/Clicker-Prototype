@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: BusinessPanelCollection
-  m_EditorClassIdentifier: Assembly-CSharp:ClickerPrototype.Configs:BusinessPanelCollection
+  m_Script: {fileID: 11500000, guid: d94954cf85cc45d5993473e5b035bc9c, type: 3}
+  m_Name: BusinessPanelCollection 1
+  m_EditorClassIdentifier: 
   configs:
   - {fileID: 11400000, guid: b13ff70a931de144289a1bd68ce1681c, type: 2}
   - {fileID: 11400000, guid: c8f02a7f6fb9c91428f194f61c6d8dd5, type: 2}
