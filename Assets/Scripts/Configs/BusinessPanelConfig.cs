@@ -2,6 +2,7 @@
 
 namespace ClickerPrototype.Configs
 {
+    [CreateAssetMenu(fileName = "BusinessPanelConfig", menuName = "Configs/BusinessPanelConfig")]
     public class BusinessPanelConfig : ScriptableObject
     {
         [SerializeField] private string title;

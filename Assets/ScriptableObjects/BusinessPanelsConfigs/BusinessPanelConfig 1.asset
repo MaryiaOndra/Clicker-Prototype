@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5c854616caf48e09f7e0e48be3d7473, type: 3}
+  m_Name: BusinessPanelConfig 1
+  m_EditorClassIdentifier: 
+  title: "\u0411\u0438\u0437\u043D\u0435\u0441 1 "
+  incomeDelay: 3
+  baseCost: 3
+  baseIncome: 3
+  firstImprovementConfig: {fileID: 11400000, guid: e7942030de3158e4487f067e32ec119b, type: 2}
+  secondImprovementConfig: {fileID: 11400000, guid: 56d1bb89ba62a274e97e74dbe6904f2d, type: 2}

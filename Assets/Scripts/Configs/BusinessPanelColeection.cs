@@ -3,8 +3,9 @@ using UnityEngine;
 
 namespace ClickerPrototype.Configs
 {
-    
-    public class BusinessPanelConfigs : ScriptableObject
+    [CreateAssetMenu(fileName = "BusinessPanelCollection", menuName = "Configs/BusinessPanelCollection")]
+
+    public class BusinessPanelCollection : ScriptableObject
     {
         [SerializeField] private List<BusinessPanelConfig> configs;
 

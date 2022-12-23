@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: BusinessPanelCollection
+  m_EditorClassIdentifier: Assembly-CSharp:ClickerPrototype.Configs:BusinessPanelCollection
+  configs:
+  - {fileID: 11400000, guid: b13ff70a931de144289a1bd68ce1681c, type: 2}
+  - {fileID: 11400000, guid: c8f02a7f6fb9c91428f194f61c6d8dd5, type: 2}
+  - {fileID: 11400000, guid: 52de0618979189b419a271ffc63ac4e7, type: 2}
+  - {fileID: 11400000, guid: 2e055ea2a5064854b98bc9eed1abe666, type: 2}
+  - {fileID: 11400000, guid: a0a998920a01dfa40978641f88a269da, type: 2}
