@@ -7,5 +7,8 @@ namespace ClickerPrototype.Configs
     {
         [SerializeField] private int price;
         [SerializeField] private int incomeMultiplier;
+
+        public int Price => price;
+        public int Multiplier => incomeMultiplier;
     }
 }

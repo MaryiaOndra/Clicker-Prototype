@@ -7,16 +7,24 @@ namespace ClickerPrototype
 {
     public class GamePanelView : MonoBehaviour
     {
+        private const string PANEL_NAME = "BusinessPanel";
+        
         [SerializeField] private TMP_Text balance;
         [SerializeField] private Transform businessPanelsContainer;
-        [SerializeField] private BusinessPanelView businessPanelPrefab;
+        [SerializeField] private GameObject businessPanelPrefab;
 
         public int Balance
         {
             set => balance.text = value.ToString();
         }
-
-        public Transform BusinessPanelsContainer => businessPanelsContainer;
-        public BusinessPanelView BusinessPanelPrefab => businessPanelPrefab;
+        
+        public BusinessPanelView CreateBusinessPanelView()
+        {
+            Debug.Log($" CreateBusinessPanel");
+            var newPanel = Instantiate(businessPanelPrefab,
+                businessPanelsContainer);
+            newPanel.name = PANEL_NAME;
+            return newPanel.GetComponent<BusinessPanelView>();
+        }
     }
 }

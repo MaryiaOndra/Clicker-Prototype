@@ -20,6 +20,7 @@ namespace ClickerPrototype
         {
             Debug.Log("Create new game data!");
             _gameData = new GameData();
+            SaveGame();
         }
 
         public void SaveGame()
@@ -30,11 +31,11 @@ namespace ClickerPrototype
         public async Task LoadGame()
         {
             _gameData = await _saveSystem.Load();
-            if (_gameData == null)
-            {
-                Debug.Log("No game data was found. Initializing data to defaults.");
-                NewGame();
-            }
+        }
+
+        public void UpdateGameData(GameData gameData)
+        {
+            _gameData = gameData;
         }
     }
 }

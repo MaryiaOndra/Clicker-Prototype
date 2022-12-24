@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Spacing: 30
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
+  m_ChildControlWidth: 1
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
@@ -714,7 +714,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &573799591
 MonoBehaviour:
@@ -728,8 +728,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a495d5eb3a4063b1136dc510a38ebe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePanelView: {fileID: 0}
-  _panelConfigs: {fileID: 11400000, guid: b07676610184f574694bfd2da6b6eb26, type: 2}
+  gamePanelView: {fileID: 814739237}
+  panelConfigs: {fileID: 11400000, guid: b07676610184f574694bfd2da6b6eb26, type: 2}
 --- !u!1 &655767483
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,7 +862,7 @@ RectTransform:
   m_Children:
   - {fileID: 143574348}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -883,7 +883,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   balance: {fileID: 354428582}
   businessPanelsContainer: {fileID: 311037259}
-  businessPanelPrefab: {fileID: 726982603685473066, guid: d0874dc782433be438f69105faaa67d8, type: 3}
+  businessPanelPrefab: {fileID: 4536438441792776801, guid: d0874dc782433be438f69105faaa67d8, type: 3}
 --- !u!1 &1469117306
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,7 +950,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1510078213
 GameObject:

@@ -15,16 +15,20 @@ namespace ClickerPrototype
         [SerializeField] private UpgradeButtonView firstUpgradeButtonView;
         [SerializeField] private UpgradeButtonView secondUpgradeButtonView;
 
-        private int Income
+        public int Income
         {
             set => income.text = value.ToString() + "$";
         }
-        
+
+        public int LevelUpPrice
+        {
+            set => lvlUpValue.text = value.ToString();
+        }
+
         public void Init(BusinessPanelConfig config)
         {
             title.text = config.Title;
             Income = config.BaseIncome;
-            lvlUpValue.text = config.Title;
         }
     }
 }

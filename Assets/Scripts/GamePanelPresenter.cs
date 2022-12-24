@@ -7,28 +7,38 @@ namespace ClickerPrototype
 {
     public class GamePanelPresenter
     {
+        private GameData _gameData;
         private GamePanelView _panelView;
         private List<BusinessPanelPresenter> _panelPresenters = new();
+
+        public GameData GameData => _gameData;
         
         public GamePanelPresenter(GamePanelView panelView)
         {
             _panelView = panelView;
         }
 
-        public void Init(List<BusinessPanelData> panelDatas, List<BusinessPanelConfig> panelConfigs)
+        public void Init(GameData gameData, List<BusinessPanelConfig> panelConfigs)
         {
+            _gameData = gameData;
+            Debug.Log($" INIT  GamePanelPresenter");
+            
             for (int i = 0; i < panelConfigs.Count; i++)
             {
-                BusinessPanelPresenter panelPresenter = CreateBusinessPanel();
-                panelPresenter.Init(panelDatas[i], panelConfigs[i]);
+                if (_gameData.panelDatas.Count <= i)
+                {
+                    _gameData.panelDatas.Add(new ());
+                }
+                var panel = CreateBusinessPanel();
+                panel.Init(_gameData.panelDatas[i], panelConfigs[i]);
             }
         }
 
         public BusinessPanelPresenter CreateBusinessPanel()
         {
-            BusinessPanelView businessPanelView = Object.Instantiate(_panelView.BusinessPanelPrefab,
-                _panelView.BusinessPanelsContainer);
-            BusinessPanelPresenter panelPresenter = new(businessPanelView);
+            var newPanelView = _panelView.CreateBusinessPanelView();
+            BusinessPanelPresenter panelPresenter = new(newPanelView);
+            _panelPresenters.Add(panelPresenter);
             return panelPresenter;
         }
     }

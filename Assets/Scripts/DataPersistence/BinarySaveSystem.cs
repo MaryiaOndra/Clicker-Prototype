@@ -25,11 +25,26 @@ namespace ClickerPrototype.DataPersistence
 
         public async Task<GameData> Load()
         {
+            if (File.Exists(_filePath))
+            {
+                var task = await LoadGameData();
+                return task;
+            }
+            else
+            {
+                Save(new GameData());
+                var task = await LoadGameData();
+                return task;
+            }
+        }
+
+        private async Task<GameData> LoadGameData()
+        {
             GameData gameData;
             await using FileStream file = File.Open(_filePath, FileMode.Open);
             object loadedFile = new BinaryFormatter().Deserialize(file);
             gameData = (GameData) loadedFile;
-            return gameData;
+            return gameData; 
         }
     }
 }

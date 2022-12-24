@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using ClickerPrototype.Configs;
 
 namespace ClickerPrototype.DataPersistence
 {
@@ -14,6 +13,9 @@ namespace ClickerPrototype.DataPersistence
         {
             balance = 0;
             panelDatas = new();
+            var firstBusiness = new BusinessPanelData();
+            firstBusiness.level = 1;
+            panelDatas.Add(firstBusiness);
         }
     }
 }
