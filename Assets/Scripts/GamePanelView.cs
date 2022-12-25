@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using ClickerPrototype.BusinessPanel;
 using TMPro;
 using UnityEngine;
 
@@ -20,7 +21,6 @@ namespace ClickerPrototype
         
         public BusinessPanelView CreateBusinessPanelView()
         {
-            Debug.Log($" CreateBusinessPanel");
             var newPanel = Instantiate(businessPanelPrefab,
                 businessPanelsContainer);
             newPanel.name = PANEL_NAME;

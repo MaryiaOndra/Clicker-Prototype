@@ -14,6 +14,7 @@ namespace ClickerPrototype.DataPersistence
             balance = 0;
             panelDatas = new();
             var firstBusiness = new BusinessPanelData();
+            firstBusiness.isUpgradeBought = new List<bool>{false, false}; 
             firstBusiness.level = 1;
             panelDatas.Add(firstBusiness);
         }

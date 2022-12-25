@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ClickerPrototype.Configs
 {
@@ -9,14 +10,12 @@ namespace ClickerPrototype.Configs
         [SerializeField] private int incomeDelay;
         [SerializeField] private int baseCost;
         [SerializeField] private int baseIncome;
-        [SerializeField] private BusinessImprovementConfig firstImprovementConfig;
-        [SerializeField] private BusinessImprovementConfig secondImprovementConfig;
+        [SerializeField] private List<BusinessImprovementConfig> improvementConfigs;
 
         public string Title => title;
         public int IncomeDelay => incomeDelay;
         public int BaseCost => baseCost;
         public int BaseIncome => baseIncome;
-        public BusinessImprovementConfig FirstImprovementConfig => firstImprovementConfig;
-        public BusinessImprovementConfig SecondImprovementConfig => secondImprovementConfig;
+        public List<BusinessImprovementConfig> ImprovementConfigs => improvementConfigs;
     }
 }

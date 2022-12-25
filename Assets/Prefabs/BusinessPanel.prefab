@@ -878,7 +878,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 4536438441978113230}
   m_HandleRect: {fileID: 0}
@@ -943,12 +943,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   title: {fileID: 4536438440786263033}
-  level: {fileID: 4536438442158626126}
+  level: {fileID: 4536438440793303825}
   income: {fileID: 4536438442158626126}
   lvlUpValue: {fileID: 4536438442365550784}
   incomeProgress: {fileID: 4536438441486826334}
-  firstUpgradeButtonView: {fileID: 4894397435602879177}
-  secondUpgradeButtonView: {fileID: 3941270871125089470}
+  upgradeButtonViews:
+  - {fileID: 4894397435602879177}
+  - {fileID: 3941270871125089470}
+  maxValue: 100
 --- !u!222 &4536438441792776802
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ClickerPrototype.BusinessPanel;
 using ClickerPrototype.Configs;
 using ClickerPrototype.DataPersistence;
 using UnityEngine;
@@ -21,20 +22,26 @@ namespace ClickerPrototype
         public void Init(GameData gameData, List<BusinessPanelConfig> panelConfigs)
         {
             _gameData = gameData;
-            Debug.Log($" INIT  GamePanelPresenter");
-            
+            InitPanels(panelConfigs);
+            _panelView.Balance = _gameData.balance;
+        }
+
+        private void InitPanels( List<BusinessPanelConfig> panelConfigs)
+        {
             for (int i = 0; i < panelConfigs.Count; i++)
             {
-                if (_gameData.panelDatas.Count <= i)
+                if (_gameData.panelDatas.Count < panelConfigs.Count)
                 {
-                    _gameData.panelDatas.Add(new ());
+                    var newPanelData = new BusinessPanelData();
+                    newPanelData.isUpgradeBought = new List<bool> {false, false};
+                    _gameData.panelDatas.Add(newPanelData);
                 }
                 var panel = CreateBusinessPanel();
                 panel.Init(_gameData.panelDatas[i], panelConfigs[i]);
             }
         }
 
-        public BusinessPanelPresenter CreateBusinessPanel()
+        private BusinessPanelPresenter CreateBusinessPanel()
         {
             var newPanelView = _panelView.CreateBusinessPanelView();
             BusinessPanelPresenter panelPresenter = new(newPanelView);

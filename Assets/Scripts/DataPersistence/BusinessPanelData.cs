@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ClickerPrototype.DataPersistence
 {
@@ -7,7 +8,6 @@ namespace ClickerPrototype.DataPersistence
     {
         public float progress;
         public int level;
-        public bool isFirstUpgradeBought;
-        public bool isSecondUpgradeBought;
+        public List<bool> isUpgradeBought;
     }
 }

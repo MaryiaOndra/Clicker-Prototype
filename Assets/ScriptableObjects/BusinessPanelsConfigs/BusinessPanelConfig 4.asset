@@ -16,5 +16,7 @@ MonoBehaviour:
   incomeDelay: 17
   baseCost: 1000
   baseIncome: 1000
-  firstImprovementConfig: {fileID: 11400000, guid: 9a0ead0a12b1efc41824bb7a16cfae0a, type: 2}
+  improvementConfigs:
+  - {fileID: 11400000, guid: 9a0ead0a12b1efc41824bb7a16cfae0a, type: 2}
+  - {fileID: 11400000, guid: 784ba68ea2015944eae50bf3c731e5f3, type: 2}
   secondImprovementConfig: {fileID: 11400000, guid: 784ba68ea2015944eae50bf3c731e5f3, type: 2}

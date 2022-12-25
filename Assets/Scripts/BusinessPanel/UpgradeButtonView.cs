@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ClickerPrototype
+namespace ClickerPrototype.BusinessPanel
 {
     public class UpgradeButtonView : MonoBehaviour
     {
