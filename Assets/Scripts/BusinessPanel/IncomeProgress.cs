@@ -24,7 +24,6 @@ namespace ClickerPrototype.BusinessPanel
 
         private void RestartRoutine()
         {
-            Debug.Log("IsTimeToIncome! RESTART ROUTINE");
             _progressRoutine = null;
             _progressRoutine = _slider.StartCoroutine(ProgressRoutine(_delay, _slider));
         }
@@ -36,7 +35,6 @@ namespace ClickerPrototype.BusinessPanel
             {
                 timeRemaining += Time.deltaTime;
                 slider.value = timeRemaining / delay;
-                //slider.value = Mathf.Lerp(slider.minValue, slider.maxValue, Time.deltaTime * delay);
                 yield return new WaitForEndOfFrame();
             }
             IsTimeToIncome?.Invoke();

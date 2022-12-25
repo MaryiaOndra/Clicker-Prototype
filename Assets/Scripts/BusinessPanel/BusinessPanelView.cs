@@ -13,10 +13,11 @@ namespace ClickerPrototype.BusinessPanel
         [SerializeField] private TMP_Text lvlUpValue;
         [SerializeField] public Slider incomeProgress;
         [SerializeField] private List<UpgradeButtonView> upgradeButtonViews;
+        [SerializeField] private Button levelUpButton;
 
         public List<UpgradeButtonView> UpgradeButtonViews => upgradeButtonViews;
 
-        public Slider ProgressSlider => incomeProgress;
+        public Button LevelUpButton => levelUpButton;
 
         public int Progress
         {

@@ -950,7 +950,7 @@ MonoBehaviour:
   upgradeButtonViews:
   - {fileID: 4894397435602879177}
   - {fileID: 3941270871125089470}
-  maxValue: 100
+  levelUpButton: {fileID: 4536438441335490752}
 --- !u!222 &4536438441792776802
 CanvasRenderer:
   m_ObjectHideFlags: 0

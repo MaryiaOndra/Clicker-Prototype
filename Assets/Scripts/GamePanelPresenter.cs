@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ClickerPrototype.BusinessPanel;
 using ClickerPrototype.Configs;
 using ClickerPrototype.DataPersistence;
@@ -12,8 +13,27 @@ namespace ClickerPrototype
         private GamePanelView _panelView;
         private List<BusinessPanelPresenter> _panelPresenters = new();
 
-        public GameData GameData => _gameData;
-        
+        public GameData GameData {
+            get
+            {
+                for (int i = 0; i < _gameData.panelDatas.Count; i++)
+                {
+                    _gameData.panelDatas[i] = _panelPresenters[i].PanelData;
+                }
+                return _gameData;
+            }
+        }
+
+        public int Balance
+        {
+            get => _gameData.balance;
+            set
+            {
+                _panelView.Balance = value;
+                _gameData.balance = value;
+            }
+        }
+
         public GamePanelPresenter(GamePanelView panelView)
         {
             _panelView = panelView;
@@ -23,7 +43,7 @@ namespace ClickerPrototype
         {
             _gameData = gameData;
             InitPanels(panelConfigs);
-            _panelView.Balance = _gameData.balance;
+            Balance = gameData.balance;
         }
 
         private void InitPanels( List<BusinessPanelConfig> panelConfigs)
@@ -46,7 +66,23 @@ namespace ClickerPrototype
             var newPanelView = _panelView.CreateBusinessPanelView();
             BusinessPanelPresenter panelPresenter = new(newPanelView);
             _panelPresenters.Add(panelPresenter);
+            panelPresenter.UpdateBalance += ChangeBalance;
+            panelPresenter.LevelUpPressed += CheckBalance;
             return panelPresenter;
+        }
+
+        private void CheckBalance(int amount, BusinessPanelPresenter panelPresenter)
+        {
+            if (Balance >= amount)
+            {
+                ChangeBalance(-amount);
+                panelPresenter.LevelUp();
+            }
+        }
+
+        private void ChangeBalance(int income)
+        {
+            Balance += income;
         }
     }
 }

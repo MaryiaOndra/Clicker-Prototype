@@ -25,8 +25,9 @@ namespace ClickerPrototype.BusinessPanel
             }
         }
 
-        private bool IsBought
+        public bool IsBought
         {
+            get => _isBought;
             set { _buttonView.IsBought = value;
                 _isBought = value;
                 if (value)

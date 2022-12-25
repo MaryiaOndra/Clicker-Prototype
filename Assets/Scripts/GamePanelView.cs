@@ -16,7 +16,7 @@ namespace ClickerPrototype
 
         public int Balance
         {
-            set => balance.text = value.ToString();
+            set => balance.text = value.ToString() + "$";
         }
         
         public BusinessPanelView CreateBusinessPanelView()
