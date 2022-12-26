@@ -12,7 +12,8 @@ namespace ClickerPrototype
         private GameData _gameData;
         private GamePanelView _panelView;
         private List<BusinessPanelPresenter> _panelPresenters = new();
-
+        public event Action NeedToSave;
+        
         public GameData GameData {
             get
             {
@@ -94,6 +95,7 @@ namespace ClickerPrototype
         private void ChangeBalance(int income)
         {
             Balance += income;
+            NeedToSave?.Invoke();
         }
     }
 }

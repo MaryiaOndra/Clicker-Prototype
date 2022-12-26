@@ -12,7 +12,7 @@ namespace ClickerPrototype.DataPersistence
         
         public BinarySaveSystem()
         {
-            _filePath = Application.persistentDataPath + "/Save.dat";
+            _filePath = Application.persistentDataPath + "/Save.txt";
         }
 
         public void Save(GameData gameData)

@@ -24,12 +24,23 @@ namespace ClickerPrototype
         {
             _gamePanelPresenter = new(gamePanelView);
             _gamePanelPresenter.Init(_saveManager.GameData, panelConfigs.Configs);
+            _gamePanelPresenter.NeedToSave += SaveGame;
         }
 
         private void OnApplicationQuit()
         {
+            SaveGame();
+        }
+
+        private void SaveGame()
+        {
             _saveManager.UpdateGameData(_gamePanelPresenter.GameData);
             _saveManager.SaveGame();
+        }
+
+        private void OnDestroy()
+        {
+            _gamePanelPresenter.NeedToSave -= SaveGame;
         }
     }
 }
