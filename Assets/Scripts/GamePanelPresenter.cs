@@ -67,11 +67,22 @@ namespace ClickerPrototype
             BusinessPanelPresenter panelPresenter = new(newPanelView);
             _panelPresenters.Add(panelPresenter);
             panelPresenter.UpdateBalance += ChangeBalance;
-            panelPresenter.LevelUpPressed += CheckBalance;
+            panelPresenter.LevelUpPressed += CheckBalanceToLevelUp;
+            panelPresenter.NeedToUpgrade += CheckBalanceToUpgrade;
             return panelPresenter;
         }
 
-        private void CheckBalance(int amount, BusinessPanelPresenter panelPresenter)
+        private void CheckBalanceToUpgrade(BusinessPanelPresenter panelPresenter, UpgradeButtonPresenter buttonPresenter)
+        {
+            if (Balance >= buttonPresenter.Price)
+            {
+                ChangeBalance(-buttonPresenter.Price);
+                panelPresenter.UpgradePanel(buttonPresenter);
+            }
+        }
+
+
+        private void CheckBalanceToLevelUp(int amount, BusinessPanelPresenter panelPresenter)
         {
             if (Balance >= amount)
             {

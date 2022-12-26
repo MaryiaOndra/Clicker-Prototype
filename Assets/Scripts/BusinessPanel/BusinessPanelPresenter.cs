@@ -14,13 +14,14 @@ namespace ClickerPrototype.BusinessPanel
         private BusinessPanelData _panelData;
         private BusinessPanelConfig _panelConfig;
         private List<UpgradeButtonPresenter> _buttonPresenters = new();
-
+        private IncomeProgress _incomeProgress;
         private int _income;
         private int _levelUpPrice;
         private int _level;
 
         public event Action<int> UpdateBalance;
         public event Action<int, BusinessPanelPresenter> LevelUpPressed;
+        public event Action<BusinessPanelPresenter, UpgradeButtonPresenter> NeedToUpgrade;
 
         public BusinessPanelData PanelData
         {
@@ -74,8 +75,8 @@ namespace ClickerPrototype.BusinessPanel
         {
             _panelData = panelData;
             _panelConfig = panelConfig;
-            UpdatePanelView();
             UpdateUpgradeButtons();
+            UpdatePanelView();
             CheckLevelForIncome(_panelData.level, _panelConfig.IncomeDelay);
             _panelView.LevelUpButton.onClick.AddListener(LevelUpButtonPressed);
         }
@@ -87,16 +88,22 @@ namespace ClickerPrototype.BusinessPanel
 
         private void CheckLevelForIncome(int level, float delay)
         {
-            if (level > 0)
+            if (level > 0 && _incomeProgress == null)
             {
-                IncomeProgress progress = new IncomeProgress(ref _panelView.incomeProgress, delay);
-                progress.IsTimeToIncome += ProgressIncomeTimesUp;
+                _incomeProgress = new IncomeProgress(ref _panelView.incomeProgress, delay);
+                _incomeProgress.IsTimeToIncome += ProgressIncomeTimesUp;
             }
         }
 
         private void ProgressIncomeTimesUp()
         {
             UpdateBalance?.Invoke(Income);
+        }
+        
+        
+        private void UpgradeButtonPressed(UpgradeButtonPresenter buttonPresenter)
+        {
+            NeedToUpgrade?.Invoke(this, buttonPresenter);
         }
 
         private void UpdateUpgradeButtons()
@@ -105,6 +112,7 @@ namespace ClickerPrototype.BusinessPanel
             {               
                 var buttonPresenter = new UpgradeButtonPresenter(_panelView.UpgradeButtonViews[i]);
                 _buttonPresenters.Add(buttonPresenter);
+                buttonPresenter.OnUpgradeButtonPressed += UpgradeButtonPressed;
                 buttonPresenter.Init(_panelData.isUpgradeBought[i], _panelConfig.ImprovementConfigs[i]);
             }
         }
@@ -119,9 +127,9 @@ namespace ClickerPrototype.BusinessPanel
 
         private int RecalculateIncome()
         {
-            int multiplier1 = _panelData.isUpgradeBought[0] ? _panelConfig.ImprovementConfigs[0].Multiplier : 0;
-            int multiplier2 = _panelData.isUpgradeBought[1] ? _panelConfig.ImprovementConfigs[1].Multiplier : 0;
-            int newIncome = Level * _panelConfig.BaseCost * (1 + multiplier1 + multiplier2);
+            float multiplier1 = _buttonPresenters[0].IsBought ? _buttonPresenters[0].Procent / 100f : 0;
+            float multiplier2 = _buttonPresenters[1].IsBought ? _panelConfig.ImprovementConfigs[1].Multiplier/100f : 0;
+            int newIncome = (int)(Level * _panelConfig.BaseIncome * (1f + multiplier1 + multiplier2));
             return newIncome;
         }
 
@@ -136,6 +144,13 @@ namespace ClickerPrototype.BusinessPanel
             Level++;
             Income = RecalculateIncome();
             LevelUpPrice = RecalculateLevelUpPrice();
+            CheckLevelForIncome(Level, _panelConfig.IncomeDelay);
+        }
+
+        public void UpgradePanel(UpgradeButtonPresenter buttonPresenter)
+        {
+            buttonPresenter.IsBought = true;
+            Income = RecalculateIncome();
         }
     }
 }

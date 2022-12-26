@@ -16,14 +16,7 @@ namespace ClickerPrototype.BusinessPanel
         [SerializeField] private Button levelUpButton;
 
         public List<UpgradeButtonView> UpgradeButtonViews => upgradeButtonViews;
-
         public Button LevelUpButton => levelUpButton;
-
-        public int Progress
-        {
-            set => incomeProgress.value = value;
-        }
-
         public int Income
         {
             set => income.text = value.ToString() + "$";

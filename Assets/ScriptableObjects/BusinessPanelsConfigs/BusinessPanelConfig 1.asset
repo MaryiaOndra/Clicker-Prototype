@@ -19,4 +19,3 @@ MonoBehaviour:
   improvementConfigs:
   - {fileID: 11400000, guid: e7942030de3158e4487f067e32ec119b, type: 2}
   - {fileID: 11400000, guid: 56d1bb89ba62a274e97e74dbe6904f2d, type: 2}
-  secondImprovementConfig: {fileID: 11400000, guid: 56d1bb89ba62a274e97e74dbe6904f2d, type: 2}

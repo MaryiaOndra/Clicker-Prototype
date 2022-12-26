@@ -41,6 +41,7 @@ namespace ClickerPrototype.BusinessPanel
             {
                 priceComponent.SetActive(!value);
                 isBoughtComponent.SetActive(value);
+                upgradeButton.interactable = !value;
             }
         }
     }

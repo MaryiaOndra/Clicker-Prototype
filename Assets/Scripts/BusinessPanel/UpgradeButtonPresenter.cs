@@ -10,16 +10,19 @@ namespace ClickerPrototype.BusinessPanel
         private int _price;
         private bool _isBought;
         private int _procent;
+        public event Action<UpgradeButtonPresenter> OnUpgradeButtonPressed;
 
-        private int Price
+        public int Price
         {
+            get => _price;
             set { _buttonView.Price = value;
                 _price = value;
             }
         }
 
-        private int Procent
+        public int Procent
         {
+            get => _procent;
             set { _buttonView.Procent = value;
                 _procent = value;
             }
@@ -36,9 +39,7 @@ namespace ClickerPrototype.BusinessPanel
                 }
             }
         }
-
-        public event Action<int, int> OnButtonPressed;
-        
+       
         public UpgradeButtonPresenter(UpgradeButtonView buttonView)
         {
             _buttonView = buttonView;
@@ -60,8 +61,7 @@ namespace ClickerPrototype.BusinessPanel
 
         private void SendUpgradePrice()
         {
-            Debug.Log("SendUpgradePrice: " + _price);
-           OnButtonPressed?.Invoke(_price, _procent);
+           OnUpgradeButtonPressed?.Invoke(this);
         }
     }
 }
