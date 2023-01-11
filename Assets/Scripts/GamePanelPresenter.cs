@@ -9,29 +9,26 @@ namespace ClickerPrototype
 {
     public class GamePanelPresenter
     {
-        private GameData _gameData;
         private GamePanelView _panelView;
         private List<BusinessPanelPresenter> _panelPresenters = new();
-        public event Action NeedToSave;
-        
-        public GameData GameData {
-            get
+
+        public GameData GameData { get; private set; }
+
+        public void UpdatePanelData()
+        {
+            for (int i = 0; i < GameData.panelDatas.Count; i++)
             {
-                for (int i = 0; i < _gameData.panelDatas.Count; i++)
-                {
-                    _gameData.panelDatas[i] = _panelPresenters[i].PanelData;
-                }
-                return _gameData;
+                GameData.panelDatas[i] = _panelPresenters[i].PanelData;
             }
         }
 
         public int Balance
         {
-            get => _gameData.balance;
+            get => GameData.balance;
             set
             {
                 _panelView.Balance = value;
-                _gameData.balance = value;
+                GameData.balance = value;
             }
         }
 
@@ -42,23 +39,24 @@ namespace ClickerPrototype
 
         public void Init(GameData gameData, List<BusinessPanelConfig> panelConfigs)
         {
-            _gameData = gameData;
+            GameData = gameData;
             InitPanels(panelConfigs);
             Balance = gameData.balance;
         }
 
-        private void InitPanels( List<BusinessPanelConfig> panelConfigs)
+        private void InitPanels(List<BusinessPanelConfig> panelConfigs)
         {
             for (int i = 0; i < panelConfigs.Count; i++)
             {
-                if (_gameData.panelDatas.Count < panelConfigs.Count)
+                if (GameData.panelDatas.Count < panelConfigs.Count)
                 {
                     var newPanelData = new BusinessPanelData();
                     newPanelData.isUpgradeBought = new List<bool> {false, false};
-                    _gameData.panelDatas.Add(newPanelData);
+                    GameData.panelDatas.Add(newPanelData);
                 }
+
                 var panel = CreateBusinessPanel();
-                panel.Init(_gameData.panelDatas[i], panelConfigs[i]);
+                panel.Init(GameData.panelDatas[i], panelConfigs[i]);
             }
         }
 
@@ -73,29 +71,32 @@ namespace ClickerPrototype
             return panelPresenter;
         }
 
-        private void CheckBalanceToUpgrade(BusinessPanelPresenter panelPresenter, UpgradeButtonPresenter buttonPresenter)
+        private void CheckBalanceToUpgrade(BusinessPanelPresenter panelPresenter,
+            UpgradeButtonPresenter buttonPresenter)
         {
-            if (Balance >= buttonPresenter.Price)
-            {
-                ChangeBalance(-buttonPresenter.Price);
-                panelPresenter.UpgradePanel(buttonPresenter);
-            }
+            if (!IsEnoughMoneyToUpgrade(buttonPresenter.Price))
+                return;
+
+            ChangeBalance(-buttonPresenter.Price);
+            panelPresenter.UpgradePanel(buttonPresenter);
         }
 
+        private bool IsEnoughMoneyToUpgrade(float price) =>
+            Balance >= price;
 
         private void CheckBalanceToLevelUp(int amount, BusinessPanelPresenter panelPresenter)
         {
-            if (Balance >= amount)
-            {
-                ChangeBalance(-amount);
-                panelPresenter.LevelUp();
-            }
+            if (!IsEnoughBalance(amount))
+                return;
+
+            ChangeBalance(-amount);
+            panelPresenter.LevelUp();
         }
 
-        private void ChangeBalance(int income)
-        {
+        private bool IsEnoughBalance(int amount) =>
+            Balance >= amount;
+
+        private void ChangeBalance(int income) =>
             Balance += income;
-            NeedToSave?.Invoke();
-        }
     }
 }
